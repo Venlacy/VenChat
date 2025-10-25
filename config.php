@@ -4,9 +4,9 @@ return [
     // 数据库配置
     'db' => [
         'host' => '',
-        'user' => 'bt79318528_venlacy_top',
-        'pass' => 'XytLyftvGUQHiCVI',
-        'name' => 'bt79318528_venlacy_top',
+        'user' => '',
+        'pass' => '',
+        'name' => '',
         'charset' => 'utf8mb4'
     ],
     
