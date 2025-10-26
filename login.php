@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             --accent-color: #4299e1;
             --danger-color: #e53e3e;
             --shadow-color: rgba(0,0,0,0.05);
-            --border-radius-input: 24px;
         }
 
         * {
@@ -51,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: var(--bg-color);
             color: var(--text-color);
             display: flex;
@@ -62,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .container {
-            background: #ffffff;
-            padding: 30px;
+            background: var(--input-bg);
+            padding: 40px;
             border-radius: 16px;
             box-shadow: 0 4px 20px var(--shadow-color);
             max-width: 400px;
@@ -72,8 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: var(--text-color);
+            font-size: 1.75rem;
+            font-weight: 600;
         }
 
         .form-group {
@@ -93,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 100%;
             padding: 12px 12px 12px 40px;
             border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-input);
+            border-radius: 24px;
             background: var(--input-bg);
             font-size: 16px;
             transition: border-color 0.3s, box-shadow 0.3s;
@@ -110,6 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 14px;
             text-align: center;
             margin-bottom: 15px;
+            padding: 10px;
+            background: #fff5f5;
+            border-radius: 8px;
         }
 
         button {
@@ -118,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: var(--accent-color);
             color: white;
             border: none;
-            border-radius: var(--border-radius-input);
+            border-radius: 24px;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
@@ -145,13 +149,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         @media (max-width: 480px) {
             .container {
-                padding: 20px;
+                padding: 30px 20px;
             }
             h2 {
-                font-size: 24px;
+                font-size: 1.5rem;
             }
             input, button {
-                font-size: 14px;
+                font-size: 15px;
             }
         }
     </style>

@@ -128,17 +128,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         :root {
-            --bg-color: linear-gradient(135deg, #2f4158 0%, #4a6fa5 100%);
-            --text-color: #2c3e50;
+            --bg-color: #eef1f5;
+            --text-color: #1a202c;
             --input-bg: #ffffff;
-            --border-color: #e0e6ed;
-            --accent-color: #3498db;
-            --danger-color: #721c24;
-            --shadow-color: rgba(0,0,0,0.1);
-            --border-radius: 6px;
+            --border-color: #e2e8f0;
+            --accent-color: #4299e1;
+            --danger-color: #e53e3e;
+            --shadow-color: rgba(0,0,0,0.05);
         }
 
-        /* 重置和基础样式 */
         * {
             margin: 0;
             padding: 0;
@@ -146,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: var(--bg-color);
             min-height: 100vh;
             display: flex;
@@ -158,16 +156,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .register-container {
             background: var(--input-bg);
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px var(--shadow-color);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px var(--shadow-color);
             width: 100%;
             max-width: 420px;
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .register-header {
@@ -178,19 +170,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .register-header h1 {
             color: var(--text-color);
             margin-bottom: 8px;
-            font-size: 2.2em;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 600;
         }
 
         .register-header p {
-            color: #7f8c8d;
+            color: #718096;
             font-size: 15px;
         }
 
-        /* 输入框样式 */
         .form-group {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .form-group label {
@@ -203,75 +194,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         .form-group input {
             width: 100%;
-            padding: 14px 14px 14px 45px; /* 增加左内边距，为图标留出空间 */
+            padding: 12px 12px 12px 40px;
             border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+            border-radius: 24px;
             font-size: 16px;
-            background: #fafafa;
+            background: var(--input-bg);
             color: var(--text-color);
-            transition: all 0.3s ease;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
         
         .form-group input:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
-            background: var(--input-bg);
+            box-shadow: 0 0 5px rgba(66, 153, 225, 0.3);
         }
         
-        /* 输入框内部图标，使用 Flexbox 垂直居中 */
         .form-group .icon {
             position: absolute;
             left: 15px;
-            top: 50%; /* 关键：相对父容器垂直居中 */
-            transform: translateY(-50%); /* 关键：向上偏移自身高度的一半 */
-            color: #bdc3c7;
-            transition: color 0.3s ease;
-            pointer-events: none; /* 确保图标不影响输入框点击 */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            transition: color 0.3s;
+            pointer-events: none;
         }
 
         .form-group input:focus + .icon {
             color: var(--accent-color);
         }
 
-        /* Turnstile 样式 */
         .turnstile-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
-        /* 注册按钮 */
         .register-btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--accent-color), #2980b9);
+            background: var(--accent-color);
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: var(--border-radius);
+            padding: 12px;
+            border-radius: 24px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
         }
 
         .register-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .register-btn:active {
-            transform: translateY(0);
+            background: #3182ce;
         }
 
-        /* 错误消息 */
         .error {
-            background-color: #ffe8e8;
-            color: #d63031;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-            border: 1px solid #ffc8c8;
+            background: #fff5f5;
+            color: var(--danger-color);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
             font-size: 14px;
         }
         
@@ -279,10 +258,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin: 5px 0;
         }
 
-        /* 链接样式 */
         .back-link {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -292,22 +270,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: var(--accent-color);
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s ease;
         }
 
         .back-link a:hover {
-            color: #2980b9;
             text-decoration: underline;
         }
         
-        /* 响应式调整 */
         @media (max-width: 500px) {
             .register-container {
                 padding: 30px 20px;
             }
             .register-header h1 {
-                font-size: 2em;
+                font-size: 1.5rem;
             }
             .form-group input, .register-btn {
                 font-size: 15px;

@@ -329,14 +329,15 @@ Options -Indexes
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f0f4f8;
+            --bg-color: #eef1f5;
             --text-color: #1a202c;
             --card-bg: #ffffff;
             --border-color: #e2e8f0;
             --accent-color: #4299e1;
             --success-color: #48bb78;
             --error-color: #f56565;
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --warning-color: #ed8936;
+            --shadow-color: rgba(0,0,0,0.05);
         }
 
         * {
@@ -347,7 +348,7 @@ Options -Indexes
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--bg-color);
             min-height: 100vh;
             padding: 20px;
             color: var(--text-color);
@@ -362,7 +363,7 @@ Options -Indexes
             background: var(--card-bg);
             border-radius: 16px;
             padding: 40px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 20px var(--shadow-color);
             margin-bottom: 20px;
         }
 
@@ -370,7 +371,8 @@ Options -Indexes
             text-align: center;
             color: var(--accent-color);
             margin-bottom: 10px;
-            font-size: 2.5rem;
+            font-size: 2.25rem;
+            font-weight: 600;
         }
 
         .subtitle {
@@ -381,7 +383,7 @@ Options -Indexes
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -395,19 +397,18 @@ Options -Indexes
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 14px 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             font-size: 1rem;
-            transition: all 0.3s;
-            background: #f7fafc;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: var(--card-bg);
         }
 
         input:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-            background: white;
+            box-shadow: 0 0 5px rgba(66, 153, 225, 0.3);
         }
 
         .hint {
@@ -418,35 +419,28 @@ Options -Indexes
 
         button {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+            transition: background-color 0.3s;
         }
 
         button:hover {
             background: #3182ce;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
         }
 
         .result-item {
-            padding: 14px 18px;
-            margin-bottom: 12px;
-            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-size: 0.95rem;
         }
 
@@ -463,7 +457,7 @@ Options -Indexes
         }
 
         .result-item i {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .success-icon {
@@ -477,7 +471,7 @@ Options -Indexes
         .complete-message {
             text-align: center;
             padding: 30px;
-            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            background: #f0fff4;
             border-radius: 12px;
             margin-top: 20px;
         }
@@ -485,7 +479,8 @@ Options -Indexes
         .complete-message h2 {
             color: var(--success-color);
             margin-bottom: 15px;
-            font-size: 1.8rem;
+            font-size: 1.75rem;
+            font-weight: 600;
         }
 
         .complete-message p {
@@ -503,27 +498,24 @@ Options -Indexes
         }
 
         .action-links a {
-            padding: 12px 30px;
+            padding: 12px 28px;
             background: var(--accent-color);
             color: white;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);
+            transition: background-color 0.3s;
         }
 
         .action-links a:hover {
             background: #3182ce;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
         }
 
         .warning {
             background: #fffaf0;
-            border-left: 4px solid #ed8936;
+            border-left: 4px solid var(--warning-color);
             padding: 16px 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             margin-top: 20px;
             color: #7c2d12;
         }
@@ -532,12 +524,19 @@ Options -Indexes
             color: #c05621;
         }
 
+        .warning code {
+            background: #fef5e7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
         @media (max-width: 600px) {
             .card {
-                padding: 25px;
+                padding: 30px 20px;
             }
             h1 {
-                font-size: 2rem;
+                font-size: 1.875rem;
             }
             .action-links {
                 flex-direction: column;
