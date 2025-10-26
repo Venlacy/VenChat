@@ -1095,7 +1095,7 @@ $initialSettings = getUserSettings($_SESSION['user_id']);
             background: rgba(0, 0, 0, 0.08);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            z-index: 101;
+            z-index: 9998;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s ease-out;
@@ -1117,7 +1117,7 @@ $initialSettings = getUserSettings($_SESSION['user_id']);
             background: var(--input-bg);
             box-shadow: 0 6px 24px 0 var(--shadow-color);
             border: 1px solid var(--border-color);
-            z-index: 102;
+            z-index: 9999;
             transform: translate(-50%, -50%);
             animation: slideInFromBottomToCenter 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
         }
